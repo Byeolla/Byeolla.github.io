@@ -1,7 +1,7 @@
 ---
 title: "I Love Your Future!"
-date: 2023-06-17 02:14:00 +0900
-last_modified_date: 2023-06-17 04:14:00 +0900
+# date: 2023-06-17 02:14:00 +0900
+# last_modified_date: 2023-06-17 04:14:00 +0900
 categories:
   - Blog
 tags:
