@@ -7,7 +7,8 @@ tags:
   - 수리계산실 메뉴얼
 ---
 # PC
-서버 컴퓨터 2대 [^1] 를 제외하고 모든 컴퓨터의 비밀번호는 "성균관"입니다.
+서버 컴퓨터 2대 [^1] 를 제외하고 모든 컴퓨터의 비밀번호는\
+`성균관`입니다.
 
 ## Ubuntu 
 2023년 7월 20일 기준 모든 Ubuntu 컴퓨터는 22.04.02 LTS
@@ -22,7 +23,7 @@ Terminal 사용법
 - Terminal에서는 복사, 붙여넣기가 Ctrl + Shift + C, V다
 - Terminal에서 Ctrl + C는 쓰고 있는 command를 취소한다.
 
--------
+<hr style="border:2px solid gray">
 
 # Nvidia Driver
 ## 그래픽카드 확인하는 방법
@@ -39,7 +40,7 @@ or
 nvidia-smi
 ```
 ![nvidia-smi](../assets/images/nvidia-smi.png)가 되면 정상적으로 작동하는 것이다.
-잘 된 사진이 뜨면  [[수리계산실 Manual#^Anaconda|Anaconda]]로 이동
+잘 된 사진이 뜨면 Anaconda로 이동
 
 ## Driver 업데이트
  `nvidia-smi` 입력했을 때 
@@ -55,7 +56,7 @@ sudo ubuntu-drivers autoinstall
 
 2. [Cuda](#Cuda) 로 이동
 
----
+<hr style="border:2px solid gray">
 
 # Anaconda(이하 Conda)
 Terminal을 켜고
@@ -75,7 +76,10 @@ conda create -n 원하는 환경이름
 >추가적인 parameter에 관해서는 [docs](https://docs.conda.io/projects/conda/en/latest/commands/env/create.html)참고\
 >보통 원하는 python version을 parameter로 사용함
 
+가상환경을 생성하고 나면
 
+![env list test](../assets/images/conda%20env%20list%20ok.png)
+처럼 뜨는 것을 확인할 수 있다.
 
 2. ==가상환경 활성화==
 ```
@@ -102,7 +106,7 @@ source ~/.bashrc
 ![source](../assets/images/source.png)
 처럼 (base)가 등장한다.
 
-------------------
+<hr style="border:2px solid gray">
 
 # Pytorch 설치
 ==conda environment가 활성화된 상태로 한다==
@@ -134,29 +138,19 @@ jupyter lab
 
 ```python
 import torch
+print(torch.cuda.is_available())
+print(torch.cuda.device_count())
+print(torch.cuda.get_device_name())
 ```
-
-```python
-torch.cuda.is_available()
-```
-    True
-
-```python
-torch.cuda.device_count()
-```
-
-    1
-
-
-```python
-torch.cuda.get_device_name()
-```
-    'NVIDIA GeForce RTX 2080 Ti'
 
 처럼 출력되면 pytorch-CUDA setting이 완료된것(마지막 줄의 GPU는 컴퓨터마다 상이할 수 있다).
 
-------------------
+<hr style="border:2px solid gray">
+<hr style="border:2px solid gray">
+<hr style="border:2px solid gray">
 
+***이곳부터는 추천하지 않는다***
+ 
 # CUDA
 아마 대부분 CUDA setting은 되어있을 것 혹은 위의 과정을 따라왔다면 설치되어있을 것이다.
 
