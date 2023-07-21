@@ -1,6 +1,9 @@
 ---
 title: 수리계산실 메뉴얼
 layout: posts
+toc: true
+toc_label: "TOC"
+toc_icon: "heart"  # corresponding Font Awesome icon name (without fa prefix)
 # categories:
 #   - 학교
 tags:
