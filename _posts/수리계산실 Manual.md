@@ -1,0 +1,199 @@
+```toc
+```
+
+# PC
+서버 컴퓨터 2대 [^1] 를 제외하고 모든 컴퓨터의 비밀번호는 "성균관"입니다.
+
+# Ubuntu 
+2023년 7월 20일 기준 모든 Ubuntu 컴퓨터는 22.04.02 LTS
+
+만약 사용하는 컴퓨터가 Windows 11라면 바로 [Anaconda](#Anaconda)로 이동
+
+## Terminal 사용법
+Ubuntu 기반의 OS는 기본적으로 Terminal을 사용합니다.
+
+Terminal 사용법
+- Ctrl + Alt + T을 누르면 Terminal 창이 뜬다
+- Terminal에서는 복사, 붙여넣기가 Ctrl + Shift + C, V다
+- Terminal에서 Ctrl + C는 쓰고 있는 command를 취소한다.
+
+# Nvidia Driver
+## 그래픽카드 확인하는 방법
+
+```
+lspci | grep -i VGA
+```
+
+![[Screenshot from 2023-07-20 15-51-12.png]] 정상적으로 작동하는 화면
+
+or
+```
+nvidia-smi
+```
+![[Screenshot from 2023-07-20 15-55-26.png]]가 되면 정상적으로 작동하는 것이다.
+잘 된 사진이 뜨면  [[수리계산실 Manual#^Anaconda|Anaconda]]로 이동
+
+## Driver 업데이트
+ `nvidia-smi` 입력했을 때 
+ ![[Screenshot from 2023-07-20 15-49-21.png]]
+ 처럼 뜨면 2가지 해결법이 있다.
+ 
+1. Driver만 설치[^2]
+```
+sudo ubuntu-drivers autoinstall
+```
+![[Screenshot from 2023-07-20 15-51-31.png]]
+이후 `sudo reboot` 그래도 안 되면 
+
+2. [Cuda](#Cuda) 로 이동
+
+# Anaconda(이하 Conda)
+Terminal을 켜고
+사진의 (base)가 보이면 Conda가 설치 되어있는것이다.
+
+(base)가 보이지 않는다면 `conda env list`를 입력한다.
+1. `conda : command not found` 라는 문구가 보이면 [설치](##Conda설치)로 이동
+![[Pasted image 20230720165843.png]]
+1. 아니라면
+![[Screenshot from 2023-07-20 17-06-56.png]]
+
+## 가상환경
+1. 가상환경 생성
+```
+conda create -n 원하는 환경이름 
+```
+>추가적인 parameter에 관해서는 <https://docs.conda.io/projects/conda/en/latest/commands/env/create.html/>
+>보통 원하는 python version을 parameter로 사용함
+
+
+
+2. ==가상환경 활성화==
+```
+conda activate 환경이름
+```
+==활성화 안 하면 내가 작업하는 환경이 되지 않는다.==
+
+[Pytorch](#Pytorch)로 이동
+
+## Conda설치
+```
+sudo apt update
+sudo apt install curl -y
+curl --output anaconda.sh https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64.sh
+sha256sum anaconda.sh
+bash anaconda.sh
+```
+위의 코드를 차례대로 입력한뒤 입력하는 줄이 나오면 차례대로 yes/Enter키/yes를 입력한다.
+
+```
+source ~/.bashrc
+```
+입력하면
+![[Screenshot from 2023-07-20 16-03-37.png]]
+처럼 (base)가 등장한다.
+
+# Pytorch 설치
+==conda environment가 활성화된 상태로 한다==
+```
+conda install pytorch
+```
+를 사용하면 높은 확률로 cuda를 사용할 수 없을 것이다.
+
+다음과 같은 방법을 이용합시다. 
+><https://pytorch.org/get-started/locally/>
+
+에서 Linux, Conda, Python, Cuda 11.8을 선택하고 밑에 나온 `Run this command`를 복사해서 Terminal에 입력한다.
+
+대부분 이 과정에서 CUDA와 cuDNN에 필요한 Driver가 설치된다. 
+
+## 확인
+
+이 메뉴얼에서는 Jupyter lab을 이용해서 확인한다.
+```
+conda install ipykernel
+python -m ipykernel install --user --name=가상환경 이름
+conda install jupyter -y
+jupyter lab
+```
+을 차례대로 입력하면 
+![[Screenshot from 2023-07-20 17-27-23.png]]창이 뜨고
+
+현재 "test"라는 이름으로 만들었기 때문에 가장 위의 test를 눌러 아래의 코드들을 실행해본다.
+
+```python
+
+import torch
+
+```
+
+  
+  
+
+```python
+
+torch.cuda.is_available()
+
+```
+
+  
+  
+  
+  
+
+    True
+
+  
+  
+  
+  
+
+```python
+
+torch.cuda.device_count()
+
+```
+
+  
+  
+  
+  
+
+    1
+
+  
+  
+  
+  
+
+```python
+
+torch.cuda.get_device_name()
+
+```
+  
+  
+  
+  
+
+    'NVIDIA GeForce RTX 2080 Ti'
+
+처럼 출력되면 pytorch-CUDA setting이 완료된것(마지막 줄의 GPU는 컴퓨터마다 상이할 수 있다).
+
+
+# CUDA
+아마 대부분 CUDA setting은 되어있을 것 혹은 위의 과정을 따라왔다면 설치되어있을 것이다.
+
+되어있지 않다면
+
+[CUDA Toolkit Download](https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local)에서 *Linux, x86_64, Ubuntu, 22.04, deb(local)*을 선택하고 
+
+![[Pasted image 20230720032713.png]]에 나온 한줄씩 Terminal에 복사, 붙여넣기 한다.
+
+설치가 완료되면 재부팅.
+
+# cuDNN
+이 항목부터는 NVIDIA 계정이 필요하다.
+
+
+[^1]: 서버 컴퓨터 사용 문의는 fkrkty93@g.skku.edu
+[^2]: 대부분 여기서 끝남
