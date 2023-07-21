@@ -1,8 +1,8 @@
 ---
 title: 수리계산실 메뉴얼
 layout: posts
-categories:
-  - 학교
+# categories:
+#   - 학교
 tags:
   - 수리계산실 메뉴얼
 ---
@@ -31,13 +31,14 @@ Terminal 사용법
 lspci | grep -i VGA
 ```
 
-![[Screenshot from 2023-07-20 15-51-12.png]] 정상적으로 작동하는 화면
+![lspci](../assets/images/lspci.png) 정상적으로 작동하는 화면
 
 or
+
 ```
 nvidia-smi
 ```
-![[Screenshot from 2023-07-20 15-55-26.png]]가 되면 정상적으로 작동하는 것이다.
+![nvidia-smi](../assets/images/nvidia-smi.png)가 되면 정상적으로 작동하는 것이다.
 잘 된 사진이 뜨면  [[수리계산실 Manual#^Anaconda|Anaconda]]로 이동
 
 ## Driver 업데이트
@@ -49,27 +50,29 @@ nvidia-smi
 ```
 sudo ubuntu-drivers autoinstall
 ```
-![[Screenshot from 2023-07-20 15-51-31.png]]
+![driver](../assets/images/drivers update.png)
 이후 `sudo reboot` 그래도 안 되면 
 
 2. [Cuda](#Cuda) 로 이동
+
 ---
+
 # Anaconda(이하 Conda)
 Terminal을 켜고
 사진의 (base)가 보이면 Conda가 설치 되어있는것이다.
 
 (base)가 보이지 않는다면 `conda env list`를 입력한다.
 1. `conda : command not found` 라는 문구가 보이면 [설치](##Conda설치)로 이동
-![[Pasted image 20230720165843.png]]
+![conda not found](../assets/images/conda%20env%20list.png)
 1. 아니라면
-![[Screenshot from 2023-07-20 17-06-56.png]]
+![conda env](../assets/images/env%20list%20without%20test.png)
 
 ## 가상환경
 1. 가상환경 생성
 ```
 conda create -n 원하는 환경이름 
 ```
->추가적인 parameter에 관해서는 <https://docs.conda.io/projects/conda/en/latest/commands/env/create.html/>
+>추가적인 parameter에 관해서는 [docs](https://docs.conda.io/projects/conda/en/latest/commands/env/create.html)참고\
 >보통 원하는 python version을 parameter로 사용함
 
 
@@ -80,7 +83,7 @@ conda activate 환경이름
 ```
 ==활성화 안 하면 내가 작업하는 환경이 되지 않는다.==
 
-[Pytorch](#Pytorch)로 이동
+[Pytorch](# Pytorch)로 이동
 
 ## Conda설치
 ```
@@ -96,7 +99,7 @@ bash anaconda.sh
 source ~/.bashrc
 ```
 입력하면
-![[Screenshot from 2023-07-20 16-03-37.png]]
+![source](../assets/images/source.png)
 처럼 (base)가 등장한다.
 
 ------------------
@@ -125,7 +128,7 @@ conda install jupyter -y
 jupyter lab
 ```
 을 차례대로 입력하면 
-![[Screenshot from 2023-07-20 17-27-23.png]]창이 뜨고
+![jupyter](../assets/images/jupyter.png)창이 뜨고
 
 현재 "test"라는 이름으로 만들었기 때문에 가장 위의 test를 눌러 아래의 코드들을 실행해본다.
 
@@ -159,9 +162,10 @@ torch.cuda.get_device_name()
 
 되어있지 않다면
 
-[CUDA Toolkit Download](https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local)에서 *Linux, x86_64, Ubuntu, 22.04, deb(local)*을 선택하고 
+[CUDA Toolkit Download](https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local)에서\
+*Linux, x86_64, Ubuntu, 22.04, deb(local)*을 선택하고 
 
-![[Pasted image 20230720032713.png]]에 나온 한줄씩 Terminal에 복사, 붙여넣기 한다.
+![cuda](../assets/images/cuda%20homepage.png)에 나온 한줄씩 Terminal에 복사, 붙여넣기 한다.
 
 설치가 완료되면 재부팅.
 
