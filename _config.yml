@@ -20,7 +20,7 @@ title                    : "Jaehoon Yoo"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Jaehoon Yoo"
-description              : "Jaehoon Yoo SIte"
+description              : "Jaehoon Yoo Site"
 url                      : "https://byeolla.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "byeolla/byeolla.github.io"
